@@ -1,0 +1,128 @@
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+  background: #f5f6f8;
+  color: #1f2430;
+}
+
+.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #1f2430;
+  color: #fff;
+  padding: 14px 24px;
+}
+.navbar-brand { color: #fff; font-weight: 600; text-decoration: none; font-size: 18px; }
+.navbar-links { display: flex; align-items: center; gap: 18px; }
+.navbar-links a { color: #cfd4e0; text-decoration: none; }
+.navbar-user { color: #9aa1b5; font-size: 14px; }
+
+.btn-link {
+  background: none;
+  border: none;
+  color: #7aa2ff;
+  cursor: pointer;
+  font-size: 14px;
+  padding: 0;
+}
+
+.page { max-width: 1100px; margin: 0 auto; padding: 28px 24px; }
+.page-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+
+.auth-page { display: flex; justify-content: center; align-items: center; min-height: 80vh; padding: 24px; }
+.auth-form {
+  background: #fff;
+  padding: 32px;
+  border-radius: 10px;
+  width: 100%;
+  max-width: 420px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+}
+.auth-form h2 { margin-top: 0; }
+.auth-switch { font-size: 14px; text-align: center; margin-top: 12px; }
+
+label { display: block; font-size: 13px; margin: 10px 0 4px; color: #4a5063; }
+input, select, textarea {
+  width: 100%;
+  padding: 9px 10px;
+  border: 1px solid #d6d9e0;
+  border-radius: 6px;
+  font-size: 14px;
+  font-family: inherit;
+}
+textarea { min-height: 70px; resize: vertical; }
+
+button, .btn {
+  background: #3355ff;
+  color: #fff;
+  border: none;
+  padding: 10px 16px;
+  border-radius: 6px;
+  font-size: 14px;
+  cursor: pointer;
+  margin-top: 16px;
+  display: inline-block;
+  text-decoration: none;
+}
+button:disabled { opacity: 0.6; cursor: not-allowed; }
+
+.error-banner {
+  background: #fde8e8;
+  color: #b3261e;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.success-banner {
+  background: #e6f7ec;
+  color: #1e7a3d;
+  padding: 10px 12px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+  font-size: 14px;
+}
+.field-error { color: #b3261e; font-size: 12px; margin-top: 2px; }
+
+.card {
+  background: #fff;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+}
+.inline-form { margin-bottom: 20px; }
+.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 0 20px; }
+.checkbox-row { display: flex; align-items: center; gap: 8px; margin-top: 16px; }
+.checkbox-row input { width: auto; }
+
+.filters { display: flex; gap: 10px; margin-bottom: 16px; flex-wrap: wrap; }
+.filters input, .filters select { width: auto; min-width: 180px; }
+
+.data-table { width: 100%; border-collapse: collapse; background: #fff; border-radius: 10px; overflow: hidden; }
+.data-table th, .data-table td { text-align: left; padding: 12px 14px; border-bottom: 1px solid #eef0f4; font-size: 14px; }
+.data-table th.sortable { cursor: pointer; user-select: none; color: #4a5063; }
+.data-table th.sortable:hover { color: #3355ff; }
+
+.stats-row { display: flex; gap: 16px; margin: 16px 0 24px; }
+.stat-card { background: #fff; border-radius: 10px; padding: 20px 28px; box-shadow: 0 2px 10px rgba(0,0,0,0.05); text-align: center; }
+.stat-value { display: block; font-size: 28px; font-weight: 700; color: #3355ff; }
+.stat-label { font-size: 13px; color: #6b7185; }
+
+.admin-nav { display: flex; gap: 12px; }
+
+.store-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+.store-card h3 { margin: 0 0 4px; }
+.muted { color: #6b7185; font-size: 14px; margin: 4px 0; }
+.muted.small { font-size: 12px; }
+
+.star-rating { font-size: 24px; cursor: pointer; }
+.star { color: #d6d9e0; margin-right: 2px; }
+.star-filled { color: #f5b301; }
+
+.modal-backdrop {
+  position: fixed; inset: 0; background: rgba(0,0,0,0.4);
+  display: flex; align-items: center; justify-content: center;
+}
+.modal { background: #fff; padding: 24px; border-radius: 10px; width: 100%; max-width: 420px; }
