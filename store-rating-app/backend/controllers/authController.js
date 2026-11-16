@@ -86,6 +86,11 @@ exports.updatePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
+    // Ensure the current password is provided
+    if (!currentPassword) {
+      return res.status(400).json({ message: 'Current password is required' });
+    }
+
     const error = validatePassword(newPassword);
     if (error) return res.status(400).json({ errors: { newPassword: error } });
 
