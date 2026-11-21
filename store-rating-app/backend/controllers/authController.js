@@ -86,13 +86,29 @@ exports.updatePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
-    const error = validatePassword(newPassword);
-    if (error) return res.status(400).json({ errors: { newPassword: error } });
+    // Ensure both fields are provided
+    if (!currentPassword) {
+      return res.status(400).json({ errors: { currentPassword: 'Current password is required' } });
+    }
+    if (!newPassword) {
+      return res.status(400).json({ errors: { newPassword: 'New password is required' } });
+    }
+
+    const validationError = validatePassword(newPassword);
+    if (validationError) {
+      return res.status(400).json({ errors: { newPassword: validationError } });
+    }
 
     const user = await User.findByPk(req.user.id);
-    const match = await bcrypt.compare(currentPassword || '', user.password);
+    const match = await bcrypt.compare(currentPassword, user.password);
     if (!match) {
       return res.status(401).json({ message: 'Current password is incorrect' });
+    }
+
+    // Avoid unnecessary update if the new password hashes to the same value
+    const isSamePassword = await bcrypt.compare(newPassword, user.password);
+    if (isSamePassword) {
+      return res.status(400).json({ message: 'New password must be different from the current password' });
     }
 
     user.password = await bcrypt.hash(newPassword, 10);
