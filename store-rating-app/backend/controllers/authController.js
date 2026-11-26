@@ -86,11 +86,16 @@ exports.updatePassword = async (req, res) => {
   try {
     const { currentPassword, newPassword } = req.body;
 
-    const error = validatePassword(newPassword);
-    if (error) return res.status(400).json({ errors: { newPassword: error } });
+    // Ensure the current password is provided
+    if (!currentPassword) {
+      return res.status(400).json({ errors: { currentPassword: 'Current password is required' } });
+    }
+
+    const validationError = validatePassword(newPassword);
+    if (validationError) return res.status(400).json({ errors: { newPassword: validationError } });
 
     const user = await User.findByPk(req.user.id);
-    const match = await bcrypt.compare(currentPassword || '', user.password);
+    const match = await bcrypt.compare(currentPassword, user.password);
     if (!match) {
       return res.status(401).json({ message: 'Current password is incorrect' });
     }
